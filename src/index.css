@@ -18,7 +18,7 @@ code {
   justify-content: center;
 }
 
-.title-div > div{
+.title-div > h1{
   color: white;
   padding: 5px;
 }
@@ -38,4 +38,10 @@ code {
 .app-body{
   background-color: #3C9FC7;
   min-height: 100vh;
+}
+
+.center-align {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
