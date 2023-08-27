@@ -5,9 +5,37 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.title-div{
+  display: flex;
+  justify-content: center;
+}
+
+.title-div > div{
+  color: white;
+  padding: 5px;
+}
+
+.card-title-red{
+  background-color: #FF8191;
+}
+
+.card-title-yellow{
+  background-color: #FFF781;
+}
+
+.card-title-green{
+  background-color: #37EC60;
+}
+
+.app-body{
+  background-color: #3C9FC7;
+  min-height: 100vh;
 }
