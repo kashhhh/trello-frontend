@@ -1,21 +1,74 @@
-import { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
+  editTaskIdState,
   formTaskDescriptionState,
   formTaskStatusState,
   formTaskTitleState,
+  formTypeState,
+  taskMaxIdState,
 } from "./atoms";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Axios } from "./Axios";
+import { toast } from "react-toastify";
 
 const FormModal = () => {
+  const [maxId, setMaxId] = useRecoilState(taskMaxIdState);
+  const [editTaskId, setEditTaskId] = useRecoilState(editTaskIdState);
+  const setFormTitle = useSetRecoilState(formTaskTitleState);
+  const setFormDescription = useSetRecoilState(formTaskDescriptionState);
+  const setFormStatus = useSetRecoilState(formTaskStatusState);
+  const queryClient = useQueryClient();
+  const addTask = useMutation({
+    mutationFn: async (formData) => {
+      await Axios.post("/submitTask", formData);
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      setMaxId(maxId + 1);
+      toast.success("Task Submitted");
+    },
+  });
+
+  const editTask = useMutation({
+    mutationFn: async (formData) => {
+      await Axios.put("/editTask", formData);
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      setFormDescription("");
+      setFormTitle("");
+      setEditTaskId(null);
+      toast.success("Task Edited");
+    },
+  });
+
   const [title, setTitle] = useRecoilState(formTaskTitleState);
   const [description, setDescription] = useRecoilState(
     formTaskDescriptionState
   );
   const [status, setStatus] = useRecoilState(formTaskStatusState);
+  const formType = useRecoilValue(formTypeState);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Yes");
+    const taskTitle = e.target.task_title.value;
+    const taskDescription = e.target.task_description.value;
+    const taskStatus = e.target.task_status.value;
+
+    const formData = new FormData();
+
+    formData.append("task_title", taskTitle);
+    formData.append("task_description", taskDescription);
+    formData.append("task_status", taskStatus);
+
+    if (formType === "Add") {
+      formData.append("task_id", maxId + 1);
+      addTask.mutate(formData);
+    } else if (formType === "Edit" && editTaskId) {
+      formData.append("task_id", editTaskId);
+      console.log("Edit", editTaskId);
+      editTask.mutate(formData);
+    }
   };
   return (
     <div
@@ -30,9 +83,8 @@ const FormModal = () => {
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="formModalLabel">
-                Add/Edit Task
+                {formType} Task
               </h1>
-
               <button
                 type="button"
                 class="btn-close"
@@ -78,7 +130,7 @@ const FormModal = () => {
 
             <div class="modal-footer">
               <button type="submit" class="btn btn-outline-primary">
-                Submit Task
+                {formType} Task
               </button>
             </div>
           </div>
