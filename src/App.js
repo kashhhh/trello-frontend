@@ -21,7 +21,7 @@ function App() {
             <TaskTitleCard title={"Done"} status={"done"} color={"green"} />
           </div>
           <FormModal />
-          <ToastContainer theme="coloured" />
+          <ToastContainer />
         </div>
       </QueryClientProvider>
     </RecoilRoot>

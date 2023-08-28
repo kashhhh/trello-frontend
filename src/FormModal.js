@@ -18,6 +18,7 @@ const FormModal = () => {
   const setFormDescription = useSetRecoilState(formTaskDescriptionState);
   const setFormStatus = useSetRecoilState(formTaskStatusState);
   const queryClient = useQueryClient();
+
   const addTask = useMutation({
     mutationFn: async (formData) => {
       await Axios.post("/submitTask", formData);
@@ -66,7 +67,6 @@ const FormModal = () => {
       addTask.mutate(formData);
     } else if (formType === "Edit" && editTaskId) {
       formData.append("task_id", editTaskId);
-      console.log("Edit", editTaskId);
       editTask.mutate(formData);
     }
   };

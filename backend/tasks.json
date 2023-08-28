@@ -1,0 +1,68 @@
+[
+    {
+        "task_id": 2,
+        "task_title": "Edit working",
+        "task_description": "lorem ipsum 2",
+        "task_status": "done"
+    },
+    {
+        "task_id": 3,
+        "task_title": "Git",
+        "task_description": "Set up Git",
+        "task_status": "done"
+    },
+    {
+        "task_id": 4,
+        "task_title": "post",
+        "task_description": "sasasaakash",
+        "task_status": "todo"
+    },
+    {
+        "task_id": 7,
+        "task_title": "test",
+        "task_description": "test task template",
+        "task_status": "doing"
+    },
+    {
+        "task_id": 8,
+        "task_title": "Beautify",
+        "task_description": "not done",
+        "task_status": "todo"
+    },
+    {
+        "task_id": 12,
+        "task_title": "dummyEdit",
+        "task_description": "asas",
+        "task_status": "doing"
+    },
+    {
+        "task_id": 13,
+        "task_title": "Set up frontend",
+        "task_description": "React, bootstrap, js",
+        "task_status": "todo"
+    },
+    {
+        "task_id": 14,
+        "task_title": "Setup Database Driver",
+        "task_description": "SQL, ODBC",
+        "task_status": "doing"
+    },
+    {
+        "task_id": 15,
+        "task_title": "Delete Posts",
+        "task_description": "By Task_id",
+        "task_status": "done"
+    },
+    {
+        "task_id": 16,
+        "task_title": "Sending Repo in Mail",
+        "task_description": "gmail",
+        "task_status": "doing"
+    },
+    {
+        "task_id": 17,
+        "task_title": "Clone Completed",
+        "task_description": "Task Done",
+        "task_status": "done"
+    }
+]
